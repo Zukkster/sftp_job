@@ -10,7 +10,7 @@ password = "KG52_wtt"
 message = """\
 Subject: Hi there
 
-This message is sent from Python."""
+This message is sent from Google Cloud"""
 
 # Try to log in to server and send email
 try:
