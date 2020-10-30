@@ -5,7 +5,7 @@ smtp_server = "smtp.gmail.com"
 port = 465  # F0r starttls
 sender_email = "db_dev@jin-analytics.co.uk"
 receiver_email = "stuartkirkup@gmail.com"
-password = "KG52_wtt"
+password = "########"
 
 message = """\
 Subject: Hi there
