@@ -10,7 +10,7 @@ sender_email = "db_dev@jin-analytics.co.uk"
 receiver_email = "stuartkirkup@gmail.com"
 password = os.environ['DB_DEV_PASSWORD']
 
-message = """\
+message = """
 Subject: Hi there
 
 This message is sent from Google Cloud"""
