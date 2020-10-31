@@ -68,8 +68,10 @@ def create_sftp_client2(host, port, username, password, keyfilepath, keyfiletype
         ssh = paramiko.SSHClient()
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         if keyfilepath is  None:
+            print("connect1")
             ssh.connect(host, port, username, password, key)
         else:
+            print("connect2")
             ssh.connect(host, port, username, password, look_for_keys=False, allow_agent=False)
 
         # Using the SSH client, create a SFTP client.
