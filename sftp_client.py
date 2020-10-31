@@ -60,7 +60,6 @@ def create_sftp_client2(host, port, username, password, keyfilepath, keyfiletype
             if keyfiletype == 'DSA':
                 # The private key is a DSA type key.
                 key = paramiko.DSSKey.from_private_key_file(keyfilepath)
-            #if keyfiletype == 'RSA':
             else:
                 # The private key is a RSA type key.
                 key = paramiko.RSAKey.from_private_key_file(keyfilepath)
