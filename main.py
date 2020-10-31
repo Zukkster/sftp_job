@@ -18,4 +18,4 @@ print(files_moved)
 files_moved = move_files_matching(sftpclient, "get", "vb-cancelled*.*", local_path, remote_path, False)
 print(files_moved)
 
-sftpclient.close()
+#sftpclient.close()
