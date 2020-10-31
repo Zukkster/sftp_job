@@ -124,11 +124,6 @@ def move_files_matching (sftp_client, action, filename_pattern, local_path, remo
         # if sftp_client is not None:
         #     sftp_client.Clos
 
-# Retrieve a file with the name 'remote_file.txt' on the remote computer and store it in a file named 'downloaded_file.txt'
-# next to this SFT client program.
-#sftpclient.get('remote_file.txt', 'downloaded_file.txt')
-# Upload a file that locally has the name 'testfile.txt' to a file on the remote computer that will have the name 'remote_testfile.txt'.
-#sftpclient.put('C:/Users/stuar/Documents/cron.log', '/home/stuar/cron.log')
 
 # We're done with the SFTPClient.
 #sftpclient.close()
