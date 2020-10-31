@@ -4,6 +4,7 @@ import fnmatch
 
 def create_sftp_client(host, port, username, password, keyfilepath, keyfiletype):
     """
+    THIS HAS NOT BEEN MODIFIED TO WORK WITHOUT A KEY FILE
     create_sftp_client(host, port, username, password, keyfilepath, keyfiletype) -> SFTPClient
 
     Creates a SFTP client connected to the supplied host on the supplied port authenticating as the user with
@@ -67,11 +68,12 @@ def create_sftp_client2(host, port, username, password, keyfilepath, keyfiletype
         # Connect SSH client accepting all host keys.
         ssh = paramiko.SSHClient()
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+
+        print("Connecting to host:" + host)
         if keyfilepath is not None:
-            print("connect1")
+            #if it's RSA or DAS use the key
             ssh.connect(host, port, username, password, key)
         else:
-            print("connect2")
             ssh.connect(host, port, username, password, look_for_keys=False, allow_agent=False)
 
         # Using the SSH client, create a SFTP client.
@@ -83,6 +85,7 @@ def create_sftp_client2(host, port, username, password, keyfilepath, keyfiletype
         return sftp
     except Exception as e:
         print('An error occurred creating SFTP client: %s: %s' % (e.__class__, e))
+        #TODO - add email notification if cannot connect to SFTP
         if sftp is not None:
             sftp.close()
         if ssh is not None:
@@ -90,15 +93,14 @@ def create_sftp_client2(host, port, username, password, keyfilepath, keyfiletype
         pass
 
 
-
-
-
-
-# List files in the default directory on the remote computer.
-#dirlist = sftpclient.listdir('./cron.*')
-# for row in dirlist:
-#     print (row)
 def move_files_matching (sftp_client, action, filename_pattern, local_path, remote_path, remove_file):
+    """
+    move_files_matching (sftp_client, action, filename_pattern, local_path, remote_path, remove_file) -> file_count
+
+    Bi-directional movement of files between remote and local paths
+    Will accept wildcards in the filename_pattern
+    set remove_file = True to MOVE the file, when set to False the file is COPIED and original remains
+    """
 
     file_count=0
     try:
@@ -119,11 +121,10 @@ def move_files_matching (sftp_client, action, filename_pattern, local_path, remo
                         os.remove(local_path + filename)
 
         return file_count
+
     except Exception as e:
         print('An error occurred moving files to/from the SFTP: %s: %s' % (e.__class__, e))
+        #TODO -add better error trapping to handle if directory doesn't exist, both remote and local
         # if sftp_client is not None:
-        #     sftp_client.Clos
+        #     sftp_client.Close
 
-
-# We're done with the SFTPClient.
-#sftpclient.close()

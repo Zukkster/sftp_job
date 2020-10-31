@@ -1,23 +1,43 @@
 from sftp_client import *
 import os
 
+#=========================================================================================
+#Get DIVENDO files
+
 host = os.environ['DIVENDO_SFTP_HOST']
 password = os.environ['DIVENDO_SFTP_PASSWORD']
 username = os.environ['DIVENDO_SFTP_USERNAME']
 remote_path = '/'
 local_path = '/home/db_admin/data/vivobarefoot/divendo/'
-#keyfile_path=None
 port = 22
 
 #Connect to SFTP site
 sftpclient = create_sftp_client2(host, port, username, password, None, None)
 
 #get files
-print("get file 1")
+print("get fulfilled files")
 files_moved = move_files_matching(sftpclient, "get", "vb-fulfilled*.*", local_path, remote_path, False)
 print(files_moved)
-print("get file 2")
+print("get file cancelled")
 files_moved = move_files_matching(sftpclient, "get", "vb-cancelled*.*", local_path, remote_path, False)
 print(files_moved)
 
-#sftpclient.close()
+#We're done with this connection close it
+sftpclient.close()
+
+#=========================================================================================
+#Get MAGENTO files
+
+host = os.environ['MAGENTO_SFTP_HOST']
+password = os.environ['MAGENTO_SFTP_PASSWORD']
+username = os.environ['MAGENTO_SFTP_USERNAME']
+remote_path = '/'
+local_path = '/home/db_admin/data/vivobarefoot/magento/'
+port = 22
+
+#Connect to SFTP site
+sftpclient = create_sftp_client2(host, port, username, password, None, None)
+
+#get files
+print("get ANY files")
+files_moved = move_files_matching(sftpclient, "get", "*.*", local_path, remote_path, False)
