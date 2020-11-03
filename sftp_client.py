@@ -120,7 +120,7 @@ def move_files_matching (sftp_client, action, filename_pattern, local_path, remo
                     if remove_file:
                         os.remove(local_path + filename)
 
-        return file_count
+    return file_count
 
     except Exception as e:
         print('An error occurred moving files to/from the SFTP: %s: %s' % (e.__class__, e))

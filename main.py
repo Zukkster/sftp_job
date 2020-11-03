@@ -15,11 +15,14 @@ port = 22
 sftpclient = create_sftp_client2(host, port, username, password, None, None)
 
 #get files
-print("get fulfilled files")
-files_moved = move_files_matching(sftpclient, "get", "vb-fulfilled*.*", local_path, remote_path, False)
+print("get files: FULFILLED")
+files_moved = move_files_matching(sftpclient, "get", "vb-fulfilled*.*", local_path, remote_path, True)
 print(files_moved)
-print("get file cancelled")
-files_moved = move_files_matching(sftpclient, "get", "vb-cancelled*.*", local_path, remote_path, False)
+print("get files: CANCELLED")
+files_moved = move_files_matching(sftpclient, "get", "vb-cancelled*.*", local_path, remote_path, True)
+print(files_moved)
+print("get files: STOCK")
+files_moved = move_files_matching(sftpclient, "get", "vb-stock*.*", local_path, remote_path, True)
 print(files_moved)
 
 #We're done with this connection close it
@@ -41,3 +44,5 @@ sftpclient = create_sftp_client2(host, port, username, password, None, None)
 #get files
 print("get ANY files")
 files_moved = move_files_matching(sftpclient, "get", "*.*", local_path, remote_path, False)
+
+sftpclient.close()
