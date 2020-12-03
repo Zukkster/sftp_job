@@ -34,7 +34,7 @@ sftpclient.close()
 host = os.environ['MAGENTO_SFTP_HOST']
 password = os.environ['MAGENTO_SFTP_PASSWORD']
 username = os.environ['MAGENTO_SFTP_USERNAME']
-remote_path = '/'
+remote_path = '/vivosftp.live/PAREPORTS/'
 local_path = '/home/db_admin/data/vivobarefoot/magento/'
 port = 22
 
@@ -43,6 +43,6 @@ sftpclient = create_sftp_client2(host, port, username, password, None, None)
 
 #get files
 print("get ANY files")
-files_moved = move_files_matching(sftpclient, "get", "*.*", local_path, remote_path, False)
+files_moved = move_files_matching(sftpclient, "get", "VIVO-New-SalesOverview*.*", local_path, remote_path, False)
 
 sftpclient.close()
