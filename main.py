@@ -34,7 +34,7 @@ sftpclient.close()
 host = os.environ['MAGENTO_SFTP_HOST']
 password = os.environ['MAGENTO_SFTP_PASSWORD']
 username = os.environ['MAGENTO_SFTP_USERNAME']
-remote_path = '/vivosftp.live/PAREPORTS/'
+remote_path = '/PerformalyticsLive/PAREPORTS/'
 local_path = '/home/db_admin/data/vivobarefoot/magento/'
 port = 22
 
