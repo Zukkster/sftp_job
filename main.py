@@ -43,6 +43,6 @@ sftpclient = create_sftp_client2(host, port, username, password, None, None)
 
 #get files
 print("get ANY files")
-files_moved = move_files_matching(sftpclient, "get", "VIVO-New-SalesOverview*.*", local_path, remote_path, False)
+files_moved = move_files_matching(sftpclient, "get", "VIVO-New-SalesOverview*.*", local_path, remote_path, True)
 
 sftpclient.close()
