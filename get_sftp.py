@@ -1,6 +1,16 @@
 import paramiko
 import datetime
 
+import logging
+dir_path = os.path.dirname('/home/db_admin/logs/')
+filename = os.path.join(dir_path, "sftp_job.log")
+#Logger
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+file_handler = logging.FileHandler(filename)
+file_handler.setLevel(logging.INFO)
+file_handler.setFormatter(logging.Formatter("%(asctime)s|%(name)s|%(levelname)s|%(message)s"))
+logger.addHandler(file_handler)
 
 def fn_get_file_sftp():
     # initialise logging function
@@ -17,7 +27,6 @@ def fn_get_file_sftp():
     # print('start')
     try:
         logger.info("SFTP Connection:Send credentials")
-        # ssh.connect('sftp.vivobarefoot.com', username='vivossh.perform', password='yYyr5^T+rsa*U|Y')
         ssh.connect(**sftp_params)
         logger.info("SFTP Connection:SUCCESS")
 
@@ -25,8 +34,7 @@ def fn_get_file_sftp():
         logger.error("SFTP Connection: Connection Error")
 
     sftp = ssh.open_sftp()
-    # sftp.chdir("/vivobarefoot/")
-    print(sftp.listdir("/"))
+    logger.info(sftp.listdir("/"))
 
     for file in sftp.listdir("/"):
         sftp.get(remotepath=sftp_folders.get('remote_path') + file, localpath=sftp_folders.get('local_path') + file)
