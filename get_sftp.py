@@ -13,7 +13,7 @@ file_handler.setFormatter(logging.Formatter("%(asctime)s|%(name)s|%(levelname)s|
 logger.addHandler(file_handler)
 
 def fn_get_file_sftp():
-    # initialise logging function
+    #initialise logging function
     #logging.config.fileConfig('logging.conf', disable_existing_loggers=False)
     #logger = logging.getLogger(__name__)
 
