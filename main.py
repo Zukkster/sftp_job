@@ -3,7 +3,7 @@ import os
 import logging
 
 
-dir_path = os.path.dirname('/home/db_admin/logs/')
+dir_path = os.path.dirname('/storage/logs/')
 filename = os.path.join(dir_path, "sftp_job.log")
 #Logger
 logger = logging.getLogger(__name__)
