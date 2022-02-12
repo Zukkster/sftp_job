@@ -21,7 +21,7 @@ host = os.environ['DIVENDO_SFTP_HOST']
 password = os.environ['DIVENDO_SFTP_PASSWORD']
 username = os.environ['DIVENDO_SFTP_USERNAME']
 remote_path = '/'
-local_path = '/home/db_admin/data/vivobarefoot/divendo/'
+local_path = '/storage/data/vivobarefoot/divendo/'
 port = 22
 
 #Connect to SFTP site
@@ -39,6 +39,9 @@ files_moved = move_files_matching(sftpclient, "get", "vb-stock*.*", local_path, 
 logger.info("Retrieved " + str(files_moved) + " STOCK  VIVOBAREFOOT files from divendo sftp")
 
 #get VIVO files
+
+local_path = '/storage/data/revivo/divendo/'
+
 files_moved = move_files_matching(sftpclient, "get", "revivo-fulfilled-*.*", local_path, remote_path, True)
 logger.info("Retrieved " + str(files_moved) + " FULFILLMENT REVIVO files from divendo sftp")
 
@@ -55,7 +58,7 @@ host = os.environ['MAGENTO_SFTP_HOST']
 password = os.environ['MAGENTO_SFTP_PASSWORD']
 username = os.environ['MAGENTO_SFTP_USERNAME']
 remote_path = '/PerformalyticsLive/PAREPORTS/'
-local_path = '/home/db_admin/data/vivobarefoot/magento/'
+local_path = '/storage/data/vivobarefoot/magento/'
 port = 22
 
 #Connect to SFTP site
